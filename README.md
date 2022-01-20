@@ -45,6 +45,7 @@
 ### ✧ Installation & Running:
 
 > **Open bot.py and Website.py and configure owner, guild and channel IDs**
+
 > **Go to Discord Developers Portal -> setup your bot & OAuth Callback**
 
 ```
