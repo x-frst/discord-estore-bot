@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Discord E-Store</title>
+  <meta property="og:title" content="Discord E-Store">
+  <meta property="og:description" content="Pack & Deliver Exciting Packges For People Around Discord Servers!">
+  <meta property="og:image" content="https://i.imgur.com/EcxYMOk.png">
+  <meta property="og:url" content="https://www.estorebot.me">
+  <link rel="icon" href="./static/images/botLogo.png">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customized.css') }}">
+</head>
+<body>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:10px;">
+
+  <!-- Introduction -->
+  <div class="w3-row-padding" style="margin-top:70px;">
+    <center>
+      <h1 class="nav-font" style="color:red;font-size:40px;">{{ error }}</h1>
+      <a href="https://discord.gg/8X9VphaRVp" target="_blank"><h2 class="nav-font" style="color:blue;margin-top:10px;font-size:25px;">Click To Join Official Bot Server</h2></a>
+      <a href="{{ url_for('index') }}"><h3 class="nav-font" style="color:blue;margin-top:10px;font-size:20px;"><u>Head Back To Home!</u></h3></a>
+    </center>
+  </div>
+
+</body>
+</html>

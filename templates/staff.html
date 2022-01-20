@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Discord E-Store</title>
+  <meta property="og:title" content="Discord E-Store">
+  <meta property="og:description" content="Pack & Deliver Exciting Packges For People Around Discord Servers!">
+  <meta property="og:image" content="https://i.imgur.com/EcxYMOk.png">
+  <meta property="og:url" content="https://www.estorebot.me">
+  <link rel="icon" href="./static/images/botLogo.png">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customized.css') }}">
+<script src="{{ url_for('static', filename='js/c.9156034604.js') }}"></script>
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 200px;
+  }
+
+  .table-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+</style>
+</head>
+<body>
+  <!-- navbar/menu -->
+  <nav class="navbar navbar-expand-md navbar-light bg-primary">
+      <a href="{{ url_for('index') }}" class="navbar-brand"><p class="akronim" style="margin-top: 12px;">Discord E-Store</p></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarCollapse" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li class="nav-item">
+                  <a href="{{ url_for('index') }}" class="nav-link nav-font">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url_for('orders') }}" class="nav-link nav-font">Orders</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url_for('staff') }}" class="nav-link nav-font">Staff</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle nav-font" data-toggle="dropdown">Applications</a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a href="{{ url_for('apply') }}" class="dropdown-item nav-font">Apply</a>
+                      <div class="dropdown-divider nav-font"></div>
+                      <a href="{{ url_for('appeal') }}" class="dropdown-item nav-font">Appeal</a>
+                  </div>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><img class="profile-logo nav-font" src="{{ user_image }}" alt="Avatar" style="width:50px"></a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a href="{{ url_for('profile') }}" class="dropdown-item nav-font">{{ user_name }}</a>
+                      <div class="dropdown-divider nav-font"></div>
+                      <a href="{{ url_for('logout') }}"class="dropdown-item nav-font">Logout</a>
+                  </div>
+              </li>
+          </ul>
+    </div>
+  </nav>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:10px;">
+
+  <!-- Staff Section -->
+  <div class="w3-row-padding" style="margin-top:70px;">
+    <div class="container p-3 my-3 bg-dark text-white">
+      <h1>Staff Section:</h1>
+      <hr style="height:2px;border-width:0;color:white;background-color:white">
+      <div id="delivery-form">
+        <div id="accordion">
+          <div class="card">
+            <div class="card-header">
+              <a class="collapsed card-link" data-toggle="collapse" href="#deliveryCollapse">
+              Your Current Delivery Message +
+            </a>
+            </div>
+            <div id="deliveryCollapse" class="collapse" data-parent="#accordion">
+              <div class="card-body" style="color:black;">
+                <textarea disabled class="form-control" rows="7" id="current-delivery" placeholder="Loading..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <form>
+          <div class="form-group" style="margin-top:35px">
+            <label for="comment">DELIVERY MESSAGE:</label>
+            <textarea class="form-control" rows="7" id="delivery-msg" placeholder="Write your delivery message here..." style='transition: all 0.7s;'></textarea>
+          </div>
+        </form>
+        <button onclick="buttonDelivery()" id="delivery-button" class="btn btn-primary float-right" style="margin-top:10px;">SET DELIVERY MESSAGE</button>
+      </div>
+      <div id="variables" style="margin-top:70px">
+        <span style="font-size:25px;color:white;">Use these variables in your delivery message:</span><br /><br />
+        <span style="color:red;">{orderer}</span><span style="color:white;">: Use this to display orderer username with tag</span><br />
+        <span style="color:red;">{orderer.name}</span><span style="color:white;">: Use this to display orderer username without tag</span><br />
+        <span style="color:red;">{orderer.mention}</span><span style="color:white;">: Use this to mention orderer (recommended!)</span><br />
+        <span style="color:red;">{orderer.id}</span><span style="color:white;">: Use this to display orderer user ID</span><br />
+        <span style="color:red;">{packer}</span><span style="color:white;">: Use this to display packer username with tag</span><br />
+        <span style="color:red;">{packer.name}</span><span style="color:white;">: Use this to display packer username without tag</span><br />
+        <span style="color:red;">{packer.id}</span><span style="color:white;">: Use this to display packer user ID</span><br />
+        <span style="color:red;">{deliverer}</span><span style="color:white;">: Use this to display deliverer (your) username with tag</span><br />
+        <span style="color:red;">{deliverer.name}</span><span style="color:white;">: Use this to display deliverer (your) username without tag</span><br />
+        <span style="color:red;">{deliverer.mention}</span><span style="color:white;">: Use this to mention deliverer (you)</span><br />
+        <span style="color:red;">{deliverer.id}</span><span style="color:white;">: Use this to display deliverer (your) user ID</span><br />
+        <span style="color:red;">{guild.name}</span><span style="color:white;">: Use this to display delivery guild name</span><br />
+        <span style="color:red;">{guild.id}</span><span style="color:white;">: Use this to display delivery guild ID</span><br />
+        <span style="color:red;">{prefix}</span><span style="color:white;">: Use this to display guild specific prefix (if any!)</span><br />
+        <span style="color:red;">{order_item}</span><span style="color:white;">: Use this to display order name (recommended!)</span><br />
+        <span style="color:red;">{order_id}</span><span style="color:white;">: Use this to display order ID (recommended!)</span><br />
+        <span style="color:red;">{order_links}</span><span style="color:white;">: Use this to display order image links (mandatory!)</span><br />
+      </div>
+      <div id="user-stats" style="margin-top:60px">
+        <span style="font-size:25px;color:white;">User Warehouse Stats:</span><br /><br />
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <strong><span style="font-size:20px;margin-top:7px;">Orders Managed: </span><span style="font-size:20px;color:yellow;margin-top:7px;" id="orders-managed">Loading...</span></strong>
+            </div>
+            <div class="col-sm-4">
+              <strong><span style="font-size:20px;margin-top:7px;">Weekly Orders: </span><span style="font-size:20px;color:yellow;margin-top:7px;" id="weekly-orders">Loading...</span></strong>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <strong><span style="font-size:20px;margin-top:7px;">Orders Delivered: </span><span style="font-size:20px;color:yellow;margin-top:7px;" id="orders-delivered">Loading...</span></strong>
+            </div>
+            <div class="col-sm-4">
+              <strong><span style="font-size:20px;margin-top:7px;">Orders Sent: </span><span style="font-size:20px;color:yellow;margin-top:7px;" id="orders-sent">Loading...</span></strong>
+            </div>
+          </div>
+      </div>
+    </div>
+    <div id="top-staff" style="margin-top:60px">
+      <span style="font-size:25px;color:white;">Staff Weekly Leaderboard:</span><br /><br />
+      <div class="table-row">
+        <div class="column" style="background-color:#92d6b3;">
+          <h2 style="font-size:25px;color:black;font-weight: bold;">Staff</h2>
+          {%for user in top_users%}
+            <p style="color:black;font-size:18px;">{{ user }}</p>
+          {%endfor%}
+        </div>
+        <div class="column" style="background-color:#c4f5dc;">
+          <h2 style="font-size:25px;color:black;font-weight: bold;">Orders</h2>
+          {%for oc in top_orders%}
+            <p style="color:black;font-size:18px;">{{ oc }} Orders</p>
+          {%endfor%}
+        </div>
+      </div>
+    </div>
+    <div id="danger-zone" style="margin-top:60px">
+      <span style="font-size:25px;color:white;">Danger Zone:</span><br /><br />
+      <strong><span style="font-size:20px;color:yellow;">This action is irreversible!</span></strong><br />
+      <button class="btn btn-danger" style="margin-top:10px;" onclick="resignPopup()">RESIGN</button>
+
+    <!-- Confirmation Modal -->
+    <div class="modal fade" id="resignBox" tabindex="-1" role="dialog" aria-labelledby="resignBoxLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="resignBoxLabel" style="color:black;">HOLD ON...</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="color:black;">
+            Are You Sure You Want To Resign From Discord E-Store?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-dismiss="modal" id="buttonStay">STAY HERE</button>
+            <button type="button" class="btn btn-danger" onclick="resignConfirm()" id="buttonResign">RESIGN NOW</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div id="popup">
+      <div class='modal fade' id='myModal'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><h4 class='modal-title' style='color:black;' id='modalTitle'></h4><button type='button' class='close' data-dismiss='modal'>&times;</button></div><div class='modal-body' style='color:black;' id='modalBody'></div><div class='modal-footer'><button type='button' class='btn btn-primary' data-dismiss='modal'>CLOSE</button></div></div></div></div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+.menu-btn span {
+    display: block;
+    width: 19px;
+    height: 3px;
+    margin: 4px 0;
+    background: rgb(255,255,255);
+}
+
+.responsive-menu{
+    display: none;
+  background-color: #444;
+  border-style: solid;
+  border-color: #252525;
+  border-width: 5px;
+  padding: 5px;
+  width: 300px;
+  height: 150px;
+  font-size: 20px;
+  ul{
+    margin: 0px 0px 0px -40px;
+
+  }
+  li {
+    background-color: #383838;
+    margin: 4px;
+    padding: 5px;
+    color: white;
+    list-style-type: none;
+  }
+}
+
+.expand {
+    display: block !important; 
+}
+
+
+/* Horizontal Navbar Below */
+.nav-horizontal {
+  margin: -10px;
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-size: 20px;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
+  }
+}
+
+//Navbar body
+.navbar {
+    margin: -10px;
+    padding: 15px;
+    max-height: 25px;
+    background-color: #333;
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <title>Discord E-Store</title>
+  <meta property="og:title" content="Discord E-Store">
+  <meta property="og:description" content="Pack & Deliver Exciting Packges For People Around Discord Servers!">
+  <meta property="og:image" content="https://i.imgur.com/EcxYMOk.png">
+  <meta property="og:url" content="https://www.estorebot.me">
+  <link rel="icon" href="./static/images/botLogo.png">
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Alfa Slab One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script>
+setInterval(function(){ // load the data from your endpoint into the div
+     $("#balance").load("/get_bal")
+},1000)
+</script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/customized.css') }}">
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 200px;
+  }
+
+  .table-row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .card-img img{
+  	width:30%;
+  }
+  .card-img .badge{
+  	position: absolute;
+  	top:10px;
+  	right:150px;
+  }
+  .card-detail span{
+  	color:#a2a2a2;
+  	font-size: 20px;
+  }
+  .border{
+  	width: 20%;
+  }
+  .card-icon span i{
+  	font-size:25px;
+  	margin:10px;
+  	color:#000;
+  }
+</style>
+</head>
+<body>
+  <!-- navbar/menu -->
+  <nav class="navbar navbar-expand-md navbar-light bg-primary">
+      <a href="{{ url_for('index') }}" class="navbar-brand"><p class="akronim" style="margin-top: 12px;">Discord E-Store</p></a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbarCollapse" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+              <li class="nav-item">
+                  <a href="{{ url_for('index') }}" class="nav-link nav-font">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url_for('orders') }}" class="nav-link nav-font">Orders</a>
+              </li>
+              <li class="nav-item">
+                  <a href="{{ url_for('staff') }}" class="nav-link nav-font">Staff</a>
+              </li>
+              <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle nav-font" data-toggle="dropdown">Applications</a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a href="{{ url_for('apply') }}" class="dropdown-item nav-font">Apply</a>
+                      <div class="dropdown-divider nav-font"></div>
+                      <a href="{{ url_for('appeal') }}" class="dropdown-item nav-font">Appeal</a>
+                  </div>
+              </li>
+          </ul>
+          <ul class="nav navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><img class="profile-logo nav-font" src="{{ user_image }}" alt="Avatar" style="width:50px"></a>
+                  <div class="dropdown-menu dropdown-menu-right">
+                      <a href="{{ url_for('profile') }}" class="dropdown-item nav-font">{{ user_name }}</a>
+                      <div class="dropdown-divider nav-font"></div>
+                      <a href="{{ url_for('logout') }}"class="dropdown-item nav-font">Logout</a>
+                  </div>
+              </li>
+          </ul>
+    </div>
+  </nav>
+
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:10px;">
+
+  <!-- Profile Section -->
+  <div class="w3-row-padding" style="margin-top:70px;">
+    <div class="container p-3 my-3 bg-dark text-white">
+      <h1>Profile Details:</h1>
+      <div class="row">
+      			<div class="offset-md-4 col-lg-4 bg-white">
+      				<div class="row">
+      					<div class="col-lg-12 text-right p-2">
+      						<i class="fa fa-list" aria-hidden="true"></i>
+      					</div>
+      					<div class="col-lg-12 card-img text-center p-2">
+      						<img src="{{ user_image }}" class="rounded-circle" style="width:50%;">
+      					</div>
+      					<div class="col-lg-12 text-center card-detail pt-3 pb-5">
+      						<h2 style="color:black;">{{ user_name }}</h2>
+                  <span style="color:gray;font-size:20px;">User ID: </span><span style="color:red;font-size:20px;">{{ user_id }}</span><br />
+      						<span style="color:gray;font-size:20px;">Balance: </span><span style="color:red;font-size:20px;" id="balance"></span><br />
+                  <span style="color:gray;font-size:20px;">Position: </span><span style="color:red;font-size:20px;">{{ user_position }}</span><br />
+      						<center><hr class="border"></center>
+      					</div>
+      					<div class="col-lg-12 text-center pb-2 card-icon">
+                  {%for badge in badges%}
+                    {{ badge | safe }}
+                  {%endfor%}
+                </div>
+      				</div>
+      			</div>
+      		</div>
+    </div>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+</body>
+</html>

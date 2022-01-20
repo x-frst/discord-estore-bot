@@ -1,0 +1,54 @@
+body {
+background-image: url("https://cdn.discordapp.com/attachments/564520348821749766/753845405376053341/pattern_1.png");
+background-repeat: no-repeat;
+background-attachment: fixed;
+}
+body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+body {font-size:16px;}
+.w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+.w3-half img:hover{opacity:1}
+.order-item {
+  width: 200px;
+  border: 1px solid;
+  padding: 2px 5px;
+  display: inline-block;
+  /* BOTH of the following are required for text-overflow */
+  white-space: nowrap;
+  overflow: hidden;
+}
+.overflow-ellipsis {text-overflow: ellipsis;text-align: center;}
+.button-claim {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  padding: 10px 24px;
+}
+.bs-example{
+margin: 20px;
+}
+.profile-logo {
+border-radius: 50%;
+}
+.akronim {
+font-family: 'Bungee Shade';font-size: 25px;
+}
+.nav-font {
+font-family: 'Alfa Slab One';font-size: 18px;
+}
+.navbar-light .navbar-brand {
+color: white;
+}
+.dropdown-divider {
+border-style: solid;
+border-width: 2px;
+}
+.order-name {
+font-size: 20px;
+word-wrap: break-word;
+}
