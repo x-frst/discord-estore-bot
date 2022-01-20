@@ -19,7 +19,7 @@
 
 -------------------------------------------------
 
-### Dashboard Images:
+### ✧ Dashboard Images:
 - **Order Packer**
 
 > ![Order Packer](https://i.imgur.com/tGkJUoj.png "Order Packer")
